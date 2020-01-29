@@ -10,8 +10,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
-  // for production change base
-  //base: '/projects/eventer',
+  base: process.env.VUE_APP_BASE_ROUTE || "/",
   routes: [
     { path: '/', redirect: '/events-list/all' },
     
