@@ -7,17 +7,24 @@ const DEFAULTS = {
 
 class EventsApi {
     constructor() {
-  
-        this.events = {};
-      
-        events.forEach(event => {
-            let sanitizedEvent = this.sanitizeEvent(event);
-            this.events[sanitizedEvent.id] = sanitizedEvent;
-        });        
+        
+        if (localStorage && localStorage.getItem('events')) {
+            this.events = JSON.parse(localStorage.getItem('events'));
+        } else {
+            this.events = {};
+            Object.values(events).forEach(event=>{
+                let sanitizedEvent = this.sanitizeEvent(event);
+                this.events[sanitizedEvent.id] = sanitizedEvent;
+             });
+             localStorage.setItem('events', JSON.stringify(this.events));
+        }
     }
 
     sanitizeEvent(event) {
         let sanitizedEvent = {};
+        if (!event.id) {
+            event.id = this.getNewId();
+        }
         Object.keys(event).forEach(key => {
             if (!event[key]) {
                 sanitizedEvent[key] = DEFAULTS[key] || "";
@@ -34,6 +41,28 @@ class EventsApi {
 
     getEvent(id) {
         return this.events[id] || null;
+    }
+    getNewId() {
+        if (!this.events) {
+            throw "No events were initialized.";
+        }
+        let lastId = Object.keys(this.events).pop();
+        if (lastId && !isNaN(lastId)) {
+            return (parseInt(lastId) + 1) + "";
+        }
+        return "1";
+    }
+
+    addEvent(event) {
+        let emptyEvent = {
+            "id": null, "title": "", "shortDesc": "", "desc": "", "place": "", 
+            "eventDate": "", "thumbnail": "", "img": "" 
+        }
+        event = Object.assign(emptyEvent, event);
+        event = this.sanitizeEvent(event);
+
+        this.events[event.id] = event;
+        //localStorage.setItem('events', JSON.stringify(this.events));
     }
 }
 

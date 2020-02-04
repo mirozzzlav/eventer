@@ -1,7 +1,7 @@
 <template>  
-    <div class="container mb-4">
+    <div class="container mb-4" @eventadded="setApiData()">
         <h1 class="mb-3 h2">Events</h1>
-        <b-navbar toggleable="lg" type="light" class="mb-4 px-0">
+        <b-navbar toggleable="lg" type="light" class="mb-1 px-0">
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" class="my-0 vertical-flex" is-nav>
                 <b-navbar-nav>
@@ -45,31 +45,42 @@
                         Any period
                     </b-nav-item>
                 </b-nav>  
+
             </b-collapse>
         </b-navbar>
-        <div class="row text-center" v-if="events.length">
+        <b-button v-b-modal.add-event-modal size="sm" variant="primary">Add new event</b-button>
+        <addEvent :modalId = "'add-event-modal'" @eventadded="setApiData" />
+
+        <div class="row text-center mt-4" v-if="events.length">
             <event v-for="event in events" :key="event.id" :eventRawObject="event"></event>
         </div>
-        <div class="text-center" v-else>
+        <div class="text-center mt-4" v-else>
             <p class="font-weight-light pt-4">No Events found for selected filter.</p>
         </div>
+        
     </div>
 </template>
 
 <script>
 import Event from './Event.vue';
+import AddEvent from './AddEvent.vue';
 import DateTimeHelper from '../helpers/DateTimeHelper';
 import Api from '../pseudoAPI/Api'
 
  
 export default {
-    components: { Event },
+    components: { Event, AddEvent },
     name: 'EventsList',
+    data: function() {
+        return {
+            apiData: {}
+        }
+    },
     computed: {
-        events: function() {
-            let events = Object.values(Api.getEvents());
-            events = events.filter(
-                (event) => { return this.filterEvent(event);
+        events: function (){
+            let events = this.apiData.filter(
+                (event) => {
+                    return this.filterEvent(event);
                 }
             );
             return events.sort((event1, event2) => {
@@ -77,7 +88,7 @@ export default {
                     return DateTimeHelper.compareDates(event2.eventDate, event1.eventDate);
                 }
                 return DateTimeHelper.compareDates(event1.eventDate, event2.eventDate);
-            }); 
+            });
         },
         routeParams: function() {
             return this.$route.params;
@@ -85,7 +96,6 @@ export default {
         periodSign: function() {
             return this.routeParams.type === 'upcoming' ? '+' : '-';
         },
-        
         
     },
     methods: {
@@ -110,11 +120,15 @@ export default {
                 condition = true;
             }
             return condition;
-        }
+        },
+        setApiData() {
+            this.apiData = Object.values(Api.getEvents());    
+        }        
         
     },
     created: function() {
-    },
+        this.setApiData();
+    }    
     
 
 }

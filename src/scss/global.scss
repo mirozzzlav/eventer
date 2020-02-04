@@ -9,11 +9,10 @@ body {
     background-color: #fff;
 }
 #app {
-    
     flex: 1;
 }
 
-footer {
+#main-footer {
     position: absolute;
     bottom:0;
     width: 100%;
@@ -88,3 +87,15 @@ nav.navbar-light .navbar-nav .navbar-toggler {
         color: gray("900");
     }
 }
+
+.btn {
+    border-radius: 0;
+}
+.btn-primary {
+    background-color: $custom-blue;
+    color:#fff;
+    &:hover {
+        background-color: $custom-blue-dark;
+    }
+}
+

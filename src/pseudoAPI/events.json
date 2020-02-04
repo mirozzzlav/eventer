@@ -1,5 +1,5 @@
-[
-    {
+{
+    "1": {
         "id": 1,
         "title": "2020 National Dog Behaviour Conference",
         "shortDesc": "This unique two-day event has become the UK’s preeminent dog training and behaviour-related conference.",
@@ -9,7 +9,7 @@
         "thumbnail": "https://www.akyonis.com/sites/default/files/styles/event_teaser/public/event/marcus-lofvenberg-IEvbIcR920Q-unsplash.jpg",
         "img": "https://www.akyonis.com/sites/default/files/styles/event_teaser/public/event/marcus-lofvenberg-IEvbIcR920Q-unsplash.jpg"
     },
-    {
+    "2": {
         "id": 2,
         "title": "Motion meetup",
         "shortDesc": "Stay in motion - speakri predstavia seba, svoju tvorbu, spoločne pouvažujeme ako \"zostať v pohybe\" - učiť sa a vyvíjať ako motion designéri.",
@@ -19,7 +19,7 @@
         "thumbnail": "https://inteng-storage.s3.amazonaws.com/img/iea/qrwBdp4pG5/sizes/newtons-cradle_resize_md.jpg",
         "img": "https://inteng-storage.s3.amazonaws.com/img/iea/qrwBdp4pG5/sizes/newtons-cradle_resize_md.jpg"
     },
-    {
+    "3": {
         "id": 3,
         "title": "The Australian Pink Floyd",
         "shortDesc": "Home - The ultimate live Pink Floyd tribute show.",
@@ -29,7 +29,7 @@
         "thumbnail": "https://hudba.zoznam.sk/media/obrazky/magazin/galeria/41640/the-australian-pink-floyd-show.jpg",
         "img": "https://hudba.zoznam.sk/media/obrazky/magazin/galeria/41640/the-australian-pink-floyd-show.jpg"
     },
-    {
+    "4": {
         "id": 4,
         "title": "Ufo for free on international tourist guide day",
         "shortDesc": "Dear tourist guides, we would like to draw your attention to the fact that UFO Tower, the landmark of the city of Bratislava, has prepared a free admission for you on the occasion of International Tourist Guide Day!",
@@ -39,7 +39,7 @@
         "thumbnail": "https://www.visitbratislava.com/wp-content/uploads/2019/11/Kov%C3%A1%C4%8D-Bratislavsk%C3%BD-hrad-UFO-800x533.jpg",
         "img": "https://www.visitbratislava.com/wp-content/uploads/2019/06/ufo-vyhlad-dunaj-hrad-1-800x450.jpg"
     },
-    {
+    "5": {
         "id": 5,
         "title": "Exhibition of juraj and matej krén \"books and pictures\"",
         "shortDesc": "Matej Krén has created for the exhibition in the Pálffy palace three artworks.",
@@ -49,7 +49,7 @@
         "thumbnail": "https://www.visitbratislava.com/wp-content/uploads/2019/09/kren-banner-384x384.jpg",
         "img": "https://www.visitbratislava.com/wp-content/uploads/2019/09/DSC7565-1-532x800.jpg"
     },
-    {
+    "6": {
         "id": 6,
         "title": "100 YEARS OF DESIGN",
         "shortDesc": "Selection from the collection of the Slovak Design Museum.",
@@ -59,7 +59,7 @@
         "thumbnail": "https://www.visitbratislava.com/wp-content/uploads/2018/08/EN-784x305.jpg",
         "img": "https://www.visitbratislava.com/wp-content/uploads/2018/08/EN-784x305.jpg"
     },
-    {
+    "7": {
         "id": 7,
         "title": "Festival of forgotten crafts 2020",
         "shortDesc": "Festival of forgotten crafts brings a unique and original concept, a reconstruction of medieval craft market together with dancing, theatre, musical and fencing performances.",
@@ -69,7 +69,7 @@
         "thumbnail": "https://www.visitbratislava.com/wp-content/uploads/2020/01/festival_zabudnutych_remesiel-784x392.jpg",
         "img": "https://www.visitbratislava.com/wp-content/uploads/2020/01/festival_zabudnutych_remesiel-784x392.jpg"
     },
-    {
+    "8": {
         "id": 8,
         "title": "Slovakia going Zero Waste",
         "shortDesc": "TRETÍ ročník konferencie bude o zmenách systémov, pravidiel, firiem a spoločností často s tisíckami zamestnancov, no hlavne o nenápadných hrdinoch, ktorí za týmito zmenami stoja. O ľuďoch, ktorí prešliapavajú cestu, ukazujú smer a sú spúšťačmi celospoločenských zmien.",
@@ -79,7 +79,7 @@
         "thumbnail": "https://www.startitup.sk/wp-content/uploads/2020/01/78360853_820277175094962_5893689492350435328_o-1090x610.jpg",
         "img": "https://www.startitup.sk/wp-content/uploads/2020/01/78360853_820277175094962_5893689492350435328_o-1090x610.jpg"
     },
-    {
+    "9": {
         "id": 9,
         "title": "General counsel 2019",
         "shortDesc": "Preparing for the future has never been more challenging. Brexit negotiations drag on, and even when completed they will leave businesses in uncharted territory. Identifying potential threats and future concerns seems little more than educated guesswork.",
@@ -89,7 +89,7 @@
         "thumbnail": "https://d37r9766f43swc.cloudfront.net/wp-content/uploads/2019/02/09071336/GC_2018_New-website_491x400.jpg",
         "img": "https://d37r9766f43swc.cloudfront.net/wp-content/uploads/2019/02/09071336/GC_2018_New-website_491x400.jpg"
     },
-    {
+    "10": {
         "id": 10,
         "title": "BRATISLAVA CORONATION DAYS 2020",
         "shortDesc": "We shall commemorate the glourious past of Bratislava this year with a series of events. Residents and visitors to the city will be able to enjoy the coronation atmosphere through cultural events, theater performances, concerts of sacred music, worship, period music and games.",
@@ -100,4 +100,4 @@
         "img": "https://www.visitbratislava.com/wp-content/uploads/2019/01/Korunovacny-sprievod-800x533.jpg"
     }
     
-]
+}
