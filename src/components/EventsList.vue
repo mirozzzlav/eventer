@@ -65,9 +65,6 @@
 import Event from './Event.vue';
 import AddEvent from './AddEvent.vue';
 import DateTimeHelper from '../helpers/DateTimeHelper';
-import Api from '../pseudoAPI/Api'
-
- 
 export default {
     components: { Event, AddEvent },
     name: 'EventsList',
@@ -78,17 +75,17 @@ export default {
     },
     computed: {
         events: function (){
-            let events = this.apiData.filter(
+            let events = this.apiData;/*.filter(
                 (event) => {
                     return this.filterEvent(event);
                 }
-            );
-            return events.sort((event1, event2) => {
+            );*/
+            return events/*.sort((event1, event2) => {
                 if (this.routeParams.type == 'past') {
                     return DateTimeHelper.compareDates(event2.eventDate, event1.eventDate);
                 }
                 return DateTimeHelper.compareDates(event1.eventDate, event2.eventDate);
-            });
+            });*/
         },
         routeParams: function() {
             return this.$route.params;
@@ -121,9 +118,14 @@ export default {
             }
             return condition;
         },
-        setApiData() {
-            this.apiData = Object.values(Api.getEvents());    
+        async setApiData() {
+            const { data } = await this.$http.patch(
+                process.env.VUE_APP_BASE_ROUTE + '/api/events-list/all',
+            );
+    
+            this.apiData = data;
         }        
+        
         
     },
     created: function() {

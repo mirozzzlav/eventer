@@ -21,7 +21,6 @@
 
 <script>
 import DateTimeHelper from '../helpers/DateTimeHelper'
-import Api from '../pseudoAPI/Api.js'
 
 export default {
   name: 'EventDetail',
@@ -37,7 +36,7 @@ export default {
     }
   },
   created: function() {
-    let id = (this.$route.params.id || -1);
+    /*let id = (this.$route.params.id || -1);
     let eventRawObject = Api.getEvent(id);
     
     if (eventRawObject === null) {
@@ -48,7 +47,7 @@ export default {
 
     Object.keys(eventRawObject).forEach((key) => {
       this[key] = eventRawObject[key]; 
-    });
+    });*/
   },
   
 }

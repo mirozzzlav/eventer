@@ -41,7 +41,6 @@
 <script>
 
 //import DateTimeHelper from '../helpers/DateTimeHelper'
-import Api from '../pseudoAPI/Api';
 
 export default {
   name: 'AddEvent',
@@ -92,8 +91,8 @@ export default {
                 return
             }
             
-            Api.addEvent(this.form);
-            this.$emit('eventadded');
+            //Api.addEvent(this.form);
+            //this.$emit('eventadded');
 
       },
 

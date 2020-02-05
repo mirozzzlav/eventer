@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import EventsList from './components/EventsList'
 import EventDetail from './components/EventDetail'
 import App from './App'
-
-
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
 Vue.use(VueRouter)
 
 const router = new VueRouter({
