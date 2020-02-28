@@ -4,9 +4,9 @@ module.exports = {
         loaderOptions: {
             sass: {
                 prependData: `
-                    @import "~@/scss/_variables.scss";
                     @import "./node_modules/bootstrap/scss/bootstrap";
                     @import "./node_modules/bootstrap-vue/src/index";
+                    @import "~@/scss/_variables.scss";
                     @import "~@/scss/global.scss";
                 `
             }

@@ -9,39 +9,39 @@
                         All Events
                     </b-nav-item>
                     <b-nav-item :to="{name: 'Events', params: {type: 'past', period: 'any'}}" class="mr-2"
-                        v-bind:class="{ 'custom-active-parent' : routeParams.type === 'past'}"
+                        v-bind:class="{ 'custom-active-parent' : $route.params.type === 'past'}"
                     >
                         Past
                     </b-nav-item>
                     <b-nav-item :to="{name: 'Events', params: {type: 'upcoming',  period: 'any'}}"
-                        v-bind:class="{ 'custom-active-parent' : routeParams.type === 'upcoming'}"
+                        v-bind:class="{ 'custom-active-parent' : $route.params.type === 'upcoming'}"
                     >
                         Upcoming
                     </b-nav-item>
                 </b-navbar-nav>
                 
-                <b-nav class="sub-nav mt-2" v-if="routeParams.period">
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'today'}}" 
-                        v-if="routeParams.type ==='upcoming'"
+                <b-nav class="sub-nav mt-2" v-if="$route.params.period">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'today'}}" 
+                        v-if="$route.params.type ==='upcoming'"
                     >
                         Today
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'1_week'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'1_week'}}">
                         {{periodSign}}1 Week
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'2_weeks'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'2_weeks'}}">
                         {{periodSign}}2 Weeks
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'1_month'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'1_month'}}">
                         {{periodSign}}1 Month
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'3_months'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'3_months'}}">
                         {{periodSign}}3 Months
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'6_months'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'6_months'}}">
                         {{periodSign}}6 Months
                     </b-nav-item>
-                    <b-nav-item :to="{name : 'Events', params: {type: routeParams.type, period:'any'}}">
+                    <b-nav-item :to="{name : 'Events', params: {type: $route.params.type, period:'any'}}">
                         Any period
                     </b-nav-item>
                 </b-nav>  
@@ -64,74 +64,31 @@
 <script>
 import Event from './Event.vue';
 import AddEvent from './AddEvent.vue';
-import DateTimeHelper from '../helpers/DateTimeHelper';
+//import DateTimeHelper from '../helpers/DateTimeHelper';
 export default {
     components: { Event, AddEvent },
     name: 'EventsList',
     data: function() {
         return {
-            apiData: {}
+            events: {}
         }
     },
     computed: {
-        events: function (){
-            let events = this.apiData;/*.filter(
-                (event) => {
-                    return this.filterEvent(event);
-                }
-            );*/
-            return events/*.sort((event1, event2) => {
-                if (this.routeParams.type == 'past') {
-                    return DateTimeHelper.compareDates(event2.eventDate, event1.eventDate);
-                }
-                return DateTimeHelper.compareDates(event1.eventDate, event2.eventDate);
-            });*/
-        },
-        routeParams: function() {
-            return this.$route.params;
-        },
-        periodSign: function() {
-            return this.routeParams.type === 'upcoming' ? '+' : '-';
-        },
-        
     },
     methods: {
-        filterEvent(event) {
-            var period = this.routeParams.period, condition = false; 
-            if (this.routeParams.type === "past") {
-                condition = DateTimeHelper.compareGivenDateToCurrentDate(event.eventDate) < 0;
-                if (period !== 'any') {
-                    condition = condition && 
-                        DateTimeHelper.compareGivenDateToCurrentDateAdaptedByPeriod(event.eventDate, this.periodSign, period) >= 0;
-                }  
-            }
-            else if (this.routeParams.type === "upcoming") {
-                condition = DateTimeHelper.compareGivenDateToCurrentDate(event.eventDate) >= 0;
-                if (period !== 'any' && period !== "today") {
-                    condition = condition && DateTimeHelper.compareGivenDateToCurrentDateAdaptedByPeriod(event.eventDate, this.periodSign, period) < 0;
-                }
-                if (period === 'today') {
-                    condition = DateTimeHelper.compareGivenDateToCurrentDate(event.eventDate, true) === 0
-                }
-            } else {
-                condition = true;
-            }
-            return condition;
-        },
-        async setApiData() {
-            const { data } = await this.$http.patch(
-                process.env.VUE_APP_BASE_ROUTE + '/api/events-list/all',
-            );
-    
-            this.apiData = data;
-        }        
-        
-        
     },
-    created: function() {
-        this.setApiData();
-    }    
-    
+    watch: {
+        $route: {
+            immediate: true, 
+            handler: function() {
+                const apiUrl = `${process.env.VUE_APP_BASE_ROUTE}/api/${this.$route.path}`;
+                this.$http.get(apiUrl).then((response)=> {
+                    const {data} = response;
+                    this.events = data;
+                });
+            }, 
+        },
+    }
 
 }
 

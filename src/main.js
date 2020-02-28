@@ -24,7 +24,7 @@ const router = new VueRouter({
     
     { path: '/events-list/all', component: EventsList, name: "All Events",},
     { path: '/events-list/type/:type/period/:period?', component: EventsList, name: 'Events' },
-    { path: '/events-detail/id/:id', component: EventDetail, name: 'Event Detail' },
+    { path: '/event-detail/id/:id', component: EventDetail, name: 'Event Detail' },
   ]
 });
 
